@@ -5,28 +5,59 @@
       <h1>Battle Bots</h1>
       <h1>Collection</h1>
     </header>
+    <create :submit-new-bot="submitNewBot"/>
+    <p>{{bots}}</p>
   </div>
 </template>
 
 <script>
+import Create from './components/Create.vue'
+
 export default {
   name: "app",
   data() {
     return {
-      msg: "Welcome to Your Vue.js App"
+      id:0,
+      botName: '',
+      attackValue: 0,
+      healthValue: 0,
+      bots: []
     };
+  },
+  methods:{
+    submitNewBot(){
+      this.id++;
+      let newBot = {
+      id: this.id,
+      botName: this.botName,
+      attackValue: this.attackValue,
+      healthValue: this.healthValue
+      }
+      this.bots.push(newBot);
+      // this.newBot = '';
+      // this.attackValue = 0;
+      // this.healthValue = 0;
+    }
+  },
+  components: {
+    create: Create
   }
 };
 </script>
 
-<style>
+<style scoped>
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  /* margin-top: 60px; */
+}
+header{
+  display: flex;
+  justify-content: space-between;
+  background: #15687a;
 }
 
 h1,
